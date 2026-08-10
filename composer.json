@@ -1,5 +1,6 @@
 {
-    "name": "blutrixx/escpos-printer",
+    "name": "blutrixx/nativephp-escpos-printer",
+    "version": "1.0.0",
     "description": "NativePHP plugin for ESC/POS Bluetooth thermal printer communication",
     "type": "nativephp-plugin",
     "license": "proprietary",
