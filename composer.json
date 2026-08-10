@@ -1,0 +1,24 @@
+{
+    "name": "blutrixx/escpos-printer",
+    "description": "NativePHP plugin for ESC/POS Bluetooth thermal printer communication",
+    "type": "nativephp-plugin",
+    "license": "proprietary",
+    "autoload": {
+        "psr-4": {
+            "Blutrixx\\EscPosPrinter\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Blutrixx\\EscPosPrinter\\EscPosPrinterServiceProvider"
+            ]
+        },
+        "nativephp": {
+            "manifest": "nativephp.json"
+        }
+    },
+    "require": {
+        "php": "^8.2"
+    }
+}

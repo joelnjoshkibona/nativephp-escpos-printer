@@ -1,0 +1,86 @@
+{
+    "namespace": "EscPosPrinter",
+
+    "bridge_functions": [
+        {
+            "name": "EscPosPrinter.CheckPermissions",
+            "android": "com.blutrixx.plugins.escposprinter.EscPosPrinterFunctions.CheckPermissions",
+            "description": "Check Bluetooth and location permission status"
+        },
+        {
+            "name": "EscPosPrinter.RequestPermissions",
+            "android": "com.blutrixx.plugins.escposprinter.EscPosPrinterFunctions.RequestPermissions",
+            "description": "Request Bluetooth and location permissions"
+        },
+        {
+            "name": "EscPosPrinter.Connect",
+            "android": "com.blutrixx.plugins.escposprinter.EscPosPrinterFunctions.Connect",
+            "description": "Connect to first available bonded Bluetooth printer"
+        },
+        {
+            "name": "EscPosPrinter.Disconnect",
+            "android": "com.blutrixx.plugins.escposprinter.EscPosPrinterFunctions.Disconnect",
+            "description": "Disconnect from Bluetooth printer"
+        },
+        {
+            "name": "EscPosPrinter.IsConnected",
+            "android": "com.blutrixx.plugins.escposprinter.EscPosPrinterFunctions.IsConnected",
+            "description": "Check if printer is currently connected"
+        },
+        {
+            "name": "EscPosPrinter.GetPrinters",
+            "android": "com.blutrixx.plugins.escposprinter.EscPosPrinterFunctions.GetPrinters",
+            "description": "List all bonded Bluetooth devices"
+        },
+        {
+            "name": "EscPosPrinter.Print",
+            "android": "com.blutrixx.plugins.escposprinter.EscPosPrinterFunctions.Print",
+            "description": "Print ESC/POS formatted text"
+        },
+        {
+            "name": "EscPosPrinter.TestPrint",
+            "android": "com.blutrixx.plugins.escposprinter.EscPosPrinterFunctions.TestPrint",
+            "description": "Print a test receipt"
+        },
+        {
+            "name": "EscPosPrinter.ConvertLogo",
+            "android": "com.blutrixx.plugins.escposprinter.EscPosPrinterFunctions.ConvertLogo",
+            "description": "Convert logo image to ESC/POS hex string"
+        }
+    ],
+
+    "events": [
+        "Blutrixx\\EscPosPrinter\\Events\\PrinterConnected",
+        "Blutrixx\\EscPosPrinter\\Events\\PrinterDisconnected",
+        "Blutrixx\\EscPosPrinter\\Events\\PrintCompleted",
+        "Blutrixx\\EscPosPrinter\\Events\\PrintFailed"
+    ],
+
+    "android": {
+        "permissions": [
+            "<uses-permission android:name=\"android.permission.BLUETOOTH\" android:maxSdkVersion=\"30\" />",
+            "<uses-permission android:name=\"android.permission.BLUETOOTH_ADMIN\" android:maxSdkVersion=\"30\" />",
+            "android.permission.BLUETOOTH_CONNECT",
+            "android.permission.BLUETOOTH_SCAN",
+            "android.permission.ACCESS_FINE_LOCATION",
+            "android.permission.ACCESS_COARSE_LOCATION"
+        ],
+        "features": [
+            {"name": "android.hardware.bluetooth", "required": true}
+        ],
+        "dependencies": {
+            "implementation": ["com.github.DantSu:ESCPOS-ThermalPrinter-Android:3.3.0"]
+        },
+        "repositories": [
+            {"url": "https://jitpack.io"}
+        ]
+    },
+
+    "ios": {
+        "info_plist": {
+            "NSBluetoothAlwaysUsageDescription": "Blutrixx uses Bluetooth to connect to receipt printers",
+            "NSBluetoothPeripheralUsageDescription": "Blutrixx communicates with Bluetooth thermal printers"
+        },
+        "background_modes": ["bluetooth-central"]
+    }
+}
