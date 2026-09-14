@@ -9,7 +9,7 @@ Current release: `v1.0.0`
 ## Requirements
 
 - PHP ^8.2
-- A Laravel app running under `nativephp/mobile`
+- A Laravel app running under `nativephp/mobile` ^3.3 (enforced by `composer.json`; 4.x is not supported yet)
 - Android: pulls in `com.github.DantSu:ESCPOS-ThermalPrinter-Android:3.3.0` via JitPack (repository auto-registered by this plugin's manifest) and requests Bluetooth + location permissions (see [Android manifest](#android-manifest) below).
 - iOS: declares `NSBluetoothAlwaysUsageDescription` / `NSBluetoothPeripheralUsageDescription` and the `bluetooth-central` background mode.
 
