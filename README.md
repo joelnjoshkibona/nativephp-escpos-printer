@@ -10,7 +10,7 @@ Current release: `v1.0.0`
 
 - PHP ^8.2
 - A Laravel app running under `nativephp/mobile` ^3.3 (enforced by `composer.json`; 4.x is not supported yet)
-- Android: pulls in `com.github.DantSu:ESCPOS-ThermalPrinter-Android:3.3.0` via JitPack (repository auto-registered by this plugin's manifest) and requests Bluetooth + location permissions (see [Android manifest](#android-manifest) below).
+- Android: pulls in `com.github.DantSu:ESCPOS-ThermalPrinter-Android:3.3.0` via JitPack (repository auto-registered by this plugin's manifest) and requests the Bluetooth permissions (see [Android manifest](#android-manifest) below).
 - iOS: declares `NSBluetoothAlwaysUsageDescription` / `NSBluetoothPeripheralUsageDescription` and the `bluetooth-central` background mode.
 
 ## Installation
@@ -86,8 +86,8 @@ If neither an explicit filename nor a configured default is available, the `{{LO
 
 | Method | Returns | Notes |
 |---|---|---|
-| `checkPermissions()` | `array` | Bluetooth + location permission status |
-| `requestPermissions()` | `array` | Prompts for Bluetooth + location permissions |
+| `checkPermissions()` | `array` | Bluetooth permission status |
+| `requestPermissions()` | `array` | Prompts for the Bluetooth permission |
 | `connect()` | `array` | Connects to the first bonded Bluetooth printer found |
 | `disconnect()` | `array` | |
 | `isConnected()` | `bool` | |
@@ -114,11 +114,10 @@ All under `Blutrixx\EscPosPrinter\Events\*`: `PrinterConnected`, `PrinterDisconn
 ## Android manifest
 
 ```
-BLUETOOTH, BLUETOOTH_ADMIN          (maxSdkVersion 30 — legacy, superseded by the two below on API 31+)
-BLUETOOTH_CONNECT, BLUETOOTH_SCAN
-ACCESS_FINE_LOCATION, ACCESS_COARSE_LOCATION   (required by BLUETOOTH_SCAN pre-Android-12)
+BLUETOOTH, BLUETOOTH_ADMIN          (maxSdkVersion 30 — legacy, superseded by BLUETOOTH_CONNECT on API 31+)
+BLUETOOTH_CONNECT
 ```
-Bluetooth hardware feature is declared `required: true` — apps embedding this plugin are assumed to genuinely need Bluetooth printing, not degrade gracefully without it.
+The plugin only talks to already-bonded printers (no discovery), so `BLUETOOTH_SCAN` and the location permissions are not declared. The Bluetooth hardware feature is declared `required: false`, so the app still installs on devices without Bluetooth; printing simply fails there.
 
 ## Quick start
 
