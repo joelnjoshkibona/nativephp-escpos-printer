@@ -20,6 +20,6 @@
     },
     "require": {
         "php": "^8.2",
-        "nativephp/mobile": "^3.3"
+        "nativephp/mobile": "^3.3 || ^4.0"
     }
 }

@@ -57,6 +57,7 @@
     ],
 
     "android": {
+        "min_version": 26,
         "permissions": [
             "<uses-permission android:name=\"android.permission.BLUETOOTH\" android:maxSdkVersion=\"30\" />",
             "<uses-permission android:name=\"android.permission.BLUETOOTH_ADMIN\" android:maxSdkVersion=\"30\" />",
@@ -74,6 +75,7 @@
     },
 
     "ios": {
+        "min_version": "18.0",
         "info_plist": {
             "NSBluetoothAlwaysUsageDescription": "Blutrixx uses Bluetooth to connect to receipt printers",
             "NSBluetoothPeripheralUsageDescription": "Blutrixx communicates with Bluetooth thermal printers"
